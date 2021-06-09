@@ -1,0 +1,17 @@
+body {
+  height: 100%;
+  width: 100%;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  column-gap: 25px;
+  row-gap: 25px;
+}
+.tile {
+  width: 180px;
+  height: 170px;
+  overflow: auto;
+  border: indianred 1px solid;
+  border-radius: 5px;
+}
