@@ -1,6 +1,7 @@
 const imgUrl = "https://picsum.photos/v2/list?page=1&limit=100";
 const imgMaxHeight = "100px";
 const users = [];
+let currentSort = "";
 init();
 
 async function init() {
@@ -91,20 +92,21 @@ function generateLetter() {
 
 function sort() {
   const value = document.getElementById("sortSelector").value;
-  if (value === "username") {
+  if (value === "username" && currentSort !== "username") {
     users.sort((a, b) => {
       if (a.username > b.username) return 1;
       if (a.username < b.username) return -1;
       return 0;
     });
-    addTitles();
+    console.log("hey");
   }
-  if (value === "age") {
+  if (value === "age" && currentSort !== "age") {
     users.sort((a, b) => {
       if (a.age > b.age) return 1;
       if (a.age < b.age) return -1;
       return 0;
     });
-    addTitles();
   }
+  currentSort = value;
+  addTitles();
 }
