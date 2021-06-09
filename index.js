@@ -1,4 +1,4 @@
-const imgUrl = "https://picsum.photos/v2/list?page=1&limit=10";
+const imgUrl = "https://picsum.photos/v2/list?page=1&limit=100";
 const imgMaxHeight = "100px";
 const users = [];
 init();
@@ -8,6 +8,7 @@ async function init() {
   createUsers(images);
   addTitles();
 }
+
 function createUsers(images) {
   images.forEach((image) => {
     users.push({
@@ -20,6 +21,7 @@ function createUsers(images) {
 }
 function addTitles() {
   const mainDiv = document.getElementById("mainContainer");
+  mainDiv.innerHTML = "";
   users.forEach((user) => {
     const tile = createTile(user);
     mainDiv.appendChild(tile);
@@ -89,10 +91,21 @@ function generateLetter() {
 
 function sort() {
   const value = document.getElementById("sortSelector").value;
-  if (value === "userName") {
-    //   imgArr.sort((a,b)=>
+  if (value === "username") {
+    users.sort((a, b) => {
+      if (a.username > b.username) return 1;
+      if (a.username < b.username) return -1;
+      return 0;
+    });
+    addTitles();
   }
   if (value === "age") {
+    users.sort((a, b) => {
+      if (a.age > b.age) return 1;
+      if (a.age < b.age) return -1;
+      return 0;
+    });
+    addTitles();
   }
 }
 function sorting(a, b, type) {
